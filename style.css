@@ -1,0 +1,211 @@
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:100%;height:100%;background:#f9d4b7;display:flex;align-items:center;justify-content:center;}
+:root{
+  --cream:#fff9ee;--stripe:#f7c5d8;--pink:#f4a0bf;--hot:#e8739a;
+  --yellow:#ffd84d;--paley:#fff4c2;
+  --dk:#7a3a2a;--md:#c06070;--lt:#e8a0b0;
+  --counter:#ffd0a0;--cob:#e8a060;
+}
+#app{
+  width:600px;height:580px;position:relative;overflow:hidden;
+  font-family:'Jua',sans-serif;background:var(--cream);
+  border:4px solid var(--pink);border-radius:4px;
+}
+.scr{display:none;position:absolute;inset:0;}.scr.on{display:block;}
+.stripe{position:absolute;inset:0;background:repeating-linear-gradient(90deg,var(--cream) 0,var(--cream) 38px,var(--stripe) 38px,var(--stripe) 76px);}
+
+/* 프릴 */
+.frill{position:absolute;top:0;left:0;right:0;height:46px;z-index:4;display:flex;}
+.frill::after{content:'';position:absolute;bottom:-13px;left:0;right:0;height:13px;
+  background:radial-gradient(ellipse 10px 13px at 50% 0%,transparent 12px,var(--cream) 13px) repeat-x;
+  background-size:19px 13px;}
+.fs{flex:1;background:var(--hot);}.fs:nth-child(even){background:var(--pink);}
+.frill-sm{position:absolute;top:0;left:0;right:0;height:34px;z-index:4;display:flex;}
+.frill-sm::after{content:'';position:absolute;bottom:-11px;left:0;right:0;height:11px;
+  background:radial-gradient(ellipse 10px 11px at 50% 0%,transparent 10px,var(--cream) 11px) repeat-x;
+  background-size:18px 11px;}
+
+/* 하트줄 */
+.hrow{position:absolute;top:44px;left:0;right:0;height:20px;z-index:4;
+  background:var(--stripe);display:flex;align-items:center;justify-content:center;
+  gap:8px;font-size:12px;color:var(--hot);}
+.hrow-sm{position:absolute;top:32px;left:0;right:0;height:16px;z-index:4;
+  background:var(--stripe);display:flex;align-items:center;justify-content:center;
+  gap:8px;font-size:10px;color:var(--hot);}
+
+/* 간판 */
+.sign{position:absolute;top:72px;left:50%;transform:translateX(-50%);z-index:6;
+  background:var(--paley);border:3px solid var(--yellow);border-radius:24px;
+  padding:6px 28px 5px;box-shadow:0 3px 0 #c8a000;
+  display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.sign-txt{font-family:'Black Han Sans',sans-serif;font-size:22px;color:var(--hot);letter-spacing:2px;text-shadow:2px 2px 0 #f9c6d0,0 0 12px rgba(232,115,154,.25);}
+.sign-sm{position:absolute;top:7px;left:50%;transform:translateX(-50%);
+  background:var(--paley);border:2.5px solid var(--yellow);border-radius:16px;
+  padding:3px 18px;font-family:'Black Han Sans',sans-serif;font-size:15px;
+  color:var(--hot);white-space:nowrap;box-shadow:0 2px 0 #c8a000;z-index:5;letter-spacing:1px;}
+
+/* 카운터 */
+.counter{position:absolute;bottom:0;left:0;right:0;height:128px;z-index:3;
+  background:var(--counter);border-top:5px solid var(--cob);}
+.cf{position:absolute;top:16px;left:8px;right:8px;bottom:14px;
+  background:#ffe8c8;border:2px solid var(--cob);border-radius:4px;}
+.cf::before{content:'';position:absolute;top:6px;left:12px;right:12px;height:3px;
+  background:rgba(255,255,255,.6);border-radius:2px;}
+
+/* 버튼 */
+.pbtn{background:var(--hot);border:3px solid #c0507a;border-radius:22px;color:white;
+  font-family:'Jua',sans-serif;font-size:14px;padding:10px 0;cursor:pointer;
+  box-shadow:0 5px 0 #a03060;transition:all .1s;width:148px;text-align:center;}
+.pbtn:hover{filter:brightness(1.06);transform:translateY(-2px);}
+.pbtn:active{transform:translateY(4px);box-shadow:0 1px 0 #a03060;}
+.pbtn.sm{font-size:12px;padding:8px 0;width:140px;}
+.ybtn{background:var(--yellow);border:3px solid #c8a000;border-radius:22px;
+  color:var(--dk);font-family:'Jua',sans-serif;font-size:14px;padding:10px 0;
+  cursor:pointer;box-shadow:0 5px 0 #a07000;transition:all .1s;width:148px;text-align:center;}
+.ybtn:hover{filter:brightness(1.05);transform:translateY(-1px);}
+.ybtn:active{transform:translateY(3px);box-shadow:0 1px 0 #a07000;}
+.gbtn{background:#b8e8a0;border:3px solid #6aaa44;border-radius:22px;
+  color:#2a6010;font-family:'Jua',sans-serif;font-size:14px;padding:10px 0;
+  cursor:pointer;box-shadow:0 5px 0 #4a8820;transition:all .1s;width:148px;text-align:center;}
+.gbtn:hover{filter:brightness(1.05);transform:translateY(-1px);}
+
+/* BGM 버튼 */
+#bgmBtn{position:absolute;top:8px;left:8px;z-index:100;
+  background:var(--paley);border:2px solid var(--yellow);border-radius:10px;
+  padding:3px 10px;font-size:11px;color:var(--dk);cursor:pointer;
+  font-family:'Jua',sans-serif;}
+
+/* 말풍선 */
+.bubble{position:absolute;top:70px;left:155px;background:white;
+  border:2.5px solid var(--pink);border-radius:18px 18px 18px 6px;
+  padding:9px 13px;font-size:12px;color:var(--dk);line-height:1.7;z-index:6;max-width:200px;}
+.bubble::before{content:'';position:absolute;left:-11px;bottom:14px;
+  border:6px solid transparent;border-right-color:var(--pink);}
+
+/* 타이틀 버튼 - 가로 일렬 */
+.tbtns{position:absolute;bottom:136px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:row;gap:8px;align-items:center;z-index:6;white-space:nowrap;}
+
+/* 선반 */
+.shelf{position:absolute;right:14px;top:118px;width:130px;z-index:4;}
+.sboard{height:9px;background:var(--yellow);border-radius:3px;border-bottom:3px solid #c8a000;margin-bottom:3px;}
+.sitems{display:flex;justify-content:center;gap:5px;margin-bottom:12px;}
+.bowl{width:30px;height:18px;background:var(--yellow);border-radius:0 0 15px 15px;border:2px solid #c8a000;position:relative;}
+.bowl::before{content:'';position:absolute;top:-6px;left:-2px;right:-2px;height:7px;background:#ffe066;border-radius:4px 4px 0 0;border:2px solid #c8a000;border-bottom:none;}
+
+/* 패널 */
+.panel{position:absolute;top:100px;left:18px;right:18px;bottom:18px;
+  background:rgba(255,255,255,.92);border:3px solid var(--pink);
+  border-radius:18px;padding:16px 20px;overflow-y:auto;}
+.panel-sign{position:absolute;top:62px;left:50%;transform:translateX(-50%);
+  background:var(--paley);border:2.5px solid var(--yellow);border-radius:16px;
+  padding:4px 22px;font-family:'Black Han Sans',sans-serif;font-size:18px;
+  color:var(--hot);white-space:nowrap;box-shadow:0 2px 0 #c8a000;z-index:5;letter-spacing:1px;}
+
+/* 점수행 */
+.score-row{display:flex;align-items:center;gap:10px;padding:7px 10px;
+  border-radius:10px;margin-bottom:5px;font-size:12px;color:var(--dk);
+  border:1.5px solid var(--stripe);}
+.score-row.r1{background:var(--paley);border-color:var(--yellow);}
+.score-row.r2{background:#f0f8ff;border-color:#99ccee;}
+.score-row.r3{background:#fff0e8;border-color:#e8b088;}
+
+/* how-to step */
+.step{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:12px;color:var(--dk);line-height:1.7;}
+.sn{background:var(--hot);color:white;border-radius:50%;width:22px;height:22px;
+  display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+
+/* 게임 스코어 */
+.g-score{position:absolute;top:10px;right:10px;background:white;
+  border:2.5px solid var(--pink);border-radius:12px;padding:3px 12px;
+  font-size:12px;color:var(--hot);font-weight:700;z-index:5;}
+
+/* 편집 영역 */
+.edit-area{position:absolute;top:50px;left:0;right:0;bottom:128px;
+  padding:5px 10px;display:flex;flex-direction:column;gap:4px;overflow:hidden;z-index:3;}
+.card{background:rgba(255,255,255,.87);border:2.5px solid var(--stripe);border-radius:14px;padding:7px 11px;}
+.card-hd{font-size:11px;color:var(--hot);font-weight:700;margin-bottom:3px;}
+.seq-lbl{font-size:8px;color:var(--lt);margin-bottom:3px;}
+
+/* 코돈 그룹 레이아웃 - 3개씩 묶기 */
+.codon-group{display:flex;gap:2px;align-items:center;position:relative;}
+.codon-group::after{
+  content:'';
+  position:absolute;
+  bottom:-4px;left:0;right:0;height:1.5px;
+  background:rgba(200,160,0,0.25);
+  border-radius:1px;
+}
+.brow{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:3px;}
+
+/* 염기 */
+.base{width:22px;height:22px;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;border-radius:6px;border:2px solid;
+  cursor:pointer;transition:transform .1s;user-select:none;}
+.base:hover{transform:scale(1.2);z-index:9;}
+.base.A{background:#e5f9ea;border-color:#5dcc77;color:#1a7a38;}
+.base.T{background:#fde8e8;border-color:#e87777;color:#b03030;}
+.base.G{background:#eae8fd;border-color:#8877dd;color:#3830b0;}
+.base.C{background:#fdf8e0;border-color:#ddbb44;color:#907010;}
+.base.mC{background:#e8eeff;border-color:#7799dd;color:#3355aa;font-size:8px;}
+.base.st{cursor:default;opacity:.65;}.base.st:hover{transform:none;}
+
+/* 삽입 커서 - 삽입 모드일 때 hover 표시 */
+.insert-cursor{
+  width:6px;height:22px;border-radius:3px;background:rgba(232,115,154,0.25);
+  border:1.5px dashed var(--hot);display:flex;align-items:center;justify-content:center;
+  font-size:7px;color:var(--hot);cursor:pointer;flex-shrink:0;transition:all .1s;
+}
+.insert-cursor:hover{background:rgba(232,115,154,0.5);transform:scaleX(1.5);}
+
+.codon-lbl{font-size:7.5px;color:var(--lt);margin-top:2px;}
+
+/* 도구 */
+.trow{display:flex;gap:4px;flex-wrap:wrap;align-items:center;flex-shrink:0;}
+.tpill{background:white;border:2px solid var(--stripe);border-radius:12px;padding:3px 9px;
+  font-size:9px;color:var(--md);cursor:pointer;transition:all .1s;font-family:'Jua',sans-serif;}
+.tpill:hover,.tpill.on{background:var(--paley);border-color:var(--yellow);color:var(--dk);font-weight:700;}
+.ilbl{font-size:8px;color:var(--lt);margin-left:3px;}
+.ib{width:20px;height:20px;border-radius:5px;border:2px solid #ddd;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;cursor:pointer;font-family:'Jua',sans-serif;}
+.ib.on{border-width:2.5px!important;}
+
+/* 과학 설명 */
+.sci-card{background:rgba(255,255,255,.87);border:2.5px solid var(--stripe);
+  border-radius:14px;padding:7px 11px;flex:1;overflow-y:auto;min-height:0;
+  font-size:9px;color:var(--dk);line-height:1.75;}
+.sci-hd{font-size:10px;color:var(--hot);font-weight:700;margin-bottom:2px;}
+
+/* 게임 카운터 */
+.g-ctop{position:absolute;bottom:114px;left:0;right:0;height:14px;
+  background:var(--stripe);border-top:3px solid var(--pink);border-bottom:3px solid var(--pink);z-index:2;}
+.g-cnt{position:absolute;bottom:0;left:0;right:0;height:122px;z-index:3;
+  background:var(--counter);border-top:5px solid var(--cob);}
+.g-cf{position:absolute;top:10px;left:8px;right:8px;bottom:10px;
+  background:#ffe8c8;border:2px solid var(--cob);border-radius:6px;
+  display:flex;align-items:center;gap:8px;padding:0 10px;overflow:hidden;}
+
+/* 환자 카드 */
+.pats-row{display:flex;gap:6px;flex:1;align-items:center;min-width:0;}
+.pcard{flex:1;min-width:0;background:rgba(255,255,255,.85);border:2px solid var(--stripe);
+  border-radius:10px;padding:5px 8px;cursor:pointer;transition:all .12s;}
+.pcard:hover,.pcard.sel{border-color:var(--hot);background:white;
+  box-shadow:0 3px 10px rgba(232,115,154,.2);}
+.pcard.done{opacity:.4;pointer-events:none;}.pcard.fail{opacity:.35;pointer-events:none;}
+.pn{font-size:10px;color:var(--hot);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pd{font-size:8px;color:var(--md);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tbar{height:3px;background:var(--stripe);border-radius:2px;margin-top:4px;overflow:hidden;}
+.tfill{height:100%;border-radius:2px;transition:width .8s linear;}
+
+/* 힌트 - 도구 pill만 반짝 (위치 힌트 없음) */
+@keyframes hintPill{0%,100%{box-shadow:0 0 0 2px var(--yellow);background:var(--paley);}50%{box-shadow:0 0 8px 3px #ffd84d;background:#ffe88a;}}
+
+/* 팝업 */
+#pop{display:none;position:absolute;inset:0;background:rgba(244,160,191,.5);
+  align-items:center;justify-content:center;z-index:50;}
+#pop.on{display:flex;}
+.pbox{background:var(--cream);border:4px solid var(--pink);border-radius:22px;
+  padding:22px 28px;text-align:center;max-width:300px;box-shadow:0 6px 0 var(--pink);}
+.pt{font-size:20px;color:var(--hot);font-weight:700;margin-bottom:8px;}
+.pb{font-size:11.5px;color:var(--dk);line-height:1.8;margin-bottom:14px;white-space:pre-wrap;}
